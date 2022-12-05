@@ -6,11 +6,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.junit.After;
 import org.junit.Test;
-import pageObject.MainPage;
-import pageObject.OrderPage;
+import pageobject.MainPage;
+import pageobject.OrderPage;
+
+import static pageobject.UrlConstants.MAIN_PAGE_URL;
 
 @RunWith(Parameterized.class)
-public class orderTest {
+public class OrderTest {
+
     // Поля класса
     private final String name;
     private final String family;
@@ -25,7 +28,7 @@ public class orderTest {
     private WebDriver driver;
 
     // Конструктор класса
-    public orderTest(String name, String family, String address, String metro, String phone, String orderDate, String timeTerms, String color, String comments){
+    public OrderTest(String name, String family, String address, String metro, String phone, String orderDate, String timeTerms, String color, String comments){
         this.name = name;
         this.family = family;
         this.address = address;
@@ -57,11 +60,11 @@ public class orderTest {
         ChromeOptions options = new ChromeOptions();
         driver = new ChromeDriver(options);
         // Переход на страницу тестового приложения заказа Самоката
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(MAIN_PAGE_URL);
     }
 
     @Test  // Тест прохождения позитивного сцерания при заказе через кнопку "Заказать" с хедере главной страницы
-    public void OrderTestTopButton() {
+    public void orderTestTopButton() {
         MainPage objMainPage = new MainPage(driver); //Создание объекта класса главной страницы
         objMainPage.clickOnButtonTop(); // Клик на кнопку "Заказать" в хедере страницы
         OrderPage objOrderPage = new OrderPage(driver); // Создание объекта классса страницы заказа самоката
@@ -72,7 +75,7 @@ public class orderTest {
     }
 
     @Test // Тест прохождения позитивного сценария при заказе через кнопку "Заказать" в средней части страницы
-    public void OrderTestMiddleButton() {
+    public void orderTestMiddleButton() {
         MainPage objMainPage = new MainPage(driver); //Создание объекта класса главной страницы
         objMainPage.clickOnButtonMiddle(); // Клик на кнопку "Заказать" в средней части страницы
         OrderPage objOrderPage = new OrderPage(driver); // Создание объекта классса страницы заказа самоката

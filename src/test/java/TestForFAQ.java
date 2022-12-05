@@ -6,20 +6,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.junit.After;
 import org.junit.Test;
-import pageObject.MainPage;
-
+import pageobject.MainPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static pageobject.UrlConstants.MAIN_PAGE_URL;
 
 @RunWith(Parameterized.class)
-public class testForFAQ {
+public class TestForFAQ {
     private int number; // Поле класса для номера вопроса
     private String answer; // Поле класса для ответа
     private WebDriver driver;
 
     // Конструктов класса
-    public testForFAQ(int number, String answer){
+    public TestForFAQ(int number, String answer){
         this.number = number;
         this.answer = answer;
     }
@@ -44,7 +44,7 @@ public class testForFAQ {
             ChromeOptions options = new ChromeOptions();
             driver = new ChromeDriver(options);
             // Переход на страницу тестового приложения заказа Самоката
-            driver.get("https://qa-scooter.praktikum-services.ru/");
+            driver.get(MAIN_PAGE_URL);
         }
 
         @Test  // Тест соответствий ответов на вопросы
